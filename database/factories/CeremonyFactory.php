@@ -17,9 +17,9 @@ class CeremonyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake('ms-MY')->name(),
-            'description' => fake('ms-MY')->paragraph(),
-            'image_name' => fake('ms-MY')->imageUrl(),
+            'name' => fake('ms_MY')->name(),
+            'description' => fake('ms_MY')->paragraph(),
+            'image_name' => fake('ms_MY')->imageUrl(),
             'start_date' => fake()->dateTime(),
             'end_date' => fake()->dateTime()
         ];

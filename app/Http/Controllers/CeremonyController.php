@@ -13,7 +13,10 @@ class CeremonyController extends Controller
      */
     public function index()
     {
-        return inertia('Ceremony/Index');
+        $ceremonies = Ceremony::simplePaginate(10);
+        return inertia('Ceremony/Index', [
+            'ceremonies' => $ceremonies,
+        ]);
     }
 
     /**
