@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ceremony;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class ApiCeremonyController extends Controller
@@ -13,7 +14,7 @@ class ApiCeremonyController extends Controller
      */
     public function index()
     {
-        return Ceremony::simplePaginate(10);
+        return Ceremony::orderBy('id', 'DESC')->simplePaginate(10);
     }
 
     /**
@@ -21,7 +22,26 @@ class ApiCeremonyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ], [
+            'name.required' => 'Nama diperlukan.'
+        ]);
+
+        $ceremony = new Ceremony();
+        $ceremony->name = $request->name;
+        $ceremony->description = $request->description;
+        $ceremony->image_name = $request->image_name;
+        $ceremony->start_date = $request->start_date;
+        $ceremony->end_date = $request->end_date;
+        $ceremony->save();
+        return $ceremony;
+
     }
 
     /**
@@ -35,9 +55,25 @@ class ApiCeremonyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Ceremony $ceremony)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ], [
+            'name.required' => 'Nama diperlukan.'
+        ]);
+
+        $ceremony->name = $request->name;
+        $ceremony->description = $request->description;
+        $ceremony->image_name = $request->image_name;
+        $ceremony->start_date = $request->start_date;
+        $ceremony->end_date = $request->end_date;
+        $ceremony->save();
+        return $ceremony;
     }
 
     /**

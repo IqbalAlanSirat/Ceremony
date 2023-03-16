@@ -35,5 +35,15 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/Ceremony', [CeremonyController::class, 'index'])->name('ceremony.index');
+    // Route::get('/Ceremony', [CeremonyController::class, 'index'])->name('ceremony.index');
+
+});
+
+Route::controller(CeremonyController::class)
+    ->prefix('/ceremonies')
+    ->name('ceremonies.')
+    ->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/form', 'create')->name('create');
+        Route::get('/form/{ceremony}', 'edit')->name('edit');
 });

@@ -21,7 +21,7 @@ class CeremonyController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Ceremony/Form');
     }
 
     /**
@@ -45,7 +45,9 @@ class CeremonyController extends Controller
      */
     public function edit(Ceremony $ceremony)
     {
-        //
+        return inertia('Ceremony/Form', [
+            'ceremony' => $ceremony
+        ]);
     }
 
     /**
@@ -56,11 +58,8 @@ class CeremonyController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Ceremony $ceremony)
+    public function form(Ceremony $ceremony)
     {
-        //
+
     }
 }

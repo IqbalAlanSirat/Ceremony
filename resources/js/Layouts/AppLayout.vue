@@ -61,8 +61,10 @@ const logout = () => {
                                     Dashboard
                                 </NavLink>
                                 <NavLink
-                                    :href="route('ceremony.index')"
-                                    :active="route().current('ceremony.index')"
+                                    :href="route('ceremonies.index')"
+                                    :active="
+                                        route().current('ceremonies.index')
+                                    "
                                 >
                                     Ceremony
                                 </NavLink>

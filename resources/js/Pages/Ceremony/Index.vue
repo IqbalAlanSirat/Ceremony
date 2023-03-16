@@ -85,6 +85,8 @@ onMounted(() => {
                         icon="pi pi-check"
                         @click.prevent="changePage(ceremonies.next_page_url)"
                     />
+                    &nbsp;
+
                     <!-- <a
                         class="rounded"
                         v-if="ceremonies.prev_page_url"
@@ -106,6 +108,9 @@ onMounted(() => {
                         />
                     </a> -->
                 </span>
+                <a :href="route('ceremonies.create')">
+                    <Button severity="help" label="Tambah" size="small" />
+                </a>
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                         <table>
@@ -142,9 +147,24 @@ onMounted(() => {
                                     <td>
                                         <Button
                                             label="Delete"
+                                            size="small"
                                             severity="danger"
                                             @click.prevent="remove(ceremony)"
                                         />
+
+                                        <a
+                                            :href="
+                                                route(
+                                                    'ceremonies.edit',
+                                                    ceremony
+                                                )
+                                            "
+                                            ><Button
+                                                label="Kemaskini"
+                                                severity="warning"
+                                                size="small"
+                                        /></a>
+                                        &nbsp;
                                     </td>
                                 </tr>
                             </tbody>
