@@ -46,4 +46,5 @@ Route::controller(CeremonyController::class)
         Route::get('/', 'index')->name('index');
         Route::get('/form', 'create')->name('create');
         Route::get('/form/{ceremony}', 'edit')->name('edit');
+        Route::get('users/export/', 'export');
 });

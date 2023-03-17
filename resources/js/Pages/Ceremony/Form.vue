@@ -2,7 +2,9 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { ref, reactive } from "vue";
 import InputText from "primevue/inputtext";
-// import ConfirmPopup from "primevue/confirmpopup";
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+import ConfirmPopup from "primevue/confirmpopup";
 
 const props = defineProps({
     ceremony: {
@@ -19,6 +21,15 @@ const form = reactive({
     end_date: props.ceremony ? props.ceremony.end_date : null,
 });
 
+const rules = {
+    name: { required },
+    description: { required },
+    image_name: { required },
+    start_date: { required },
+    end_date: { required },
+};
+
+const v$ = useVuelidate(rules, form, { $autoDirty: true });
 const errors = ref({});
 
 function submit() {
@@ -102,6 +113,14 @@ function update() {
                         <div class="m-30">
                             <label for="">Nama :</label>
                             <InputText type="text" v-model="form.name" />
+                            <div v-if="v$.name.$invalid">
+                                <p
+                                    v-for="(error, index) in v$.name.$errors"
+                                    :key="index"
+                                >
+                                    {{ error.$message }}
+                                </p>
+                            </div>
                         </div>
                         <div class="m-30">
                             <label for="">Description :</label>

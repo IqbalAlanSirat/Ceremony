@@ -14,6 +14,7 @@ import "primevue/resources/primevue.min.css";
 
 //icons
 import "primeicons/primeicons.css";
+import PrimeVue from "primevue/config";
 import Button from "primevue/button";
 import ConfirmationService from "primevue/confirmationservice";
 
@@ -32,6 +33,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .component("Button", Button)
+            .use(PrimeVue)
             .use(ConfirmationService)
             .mount(el);
     },

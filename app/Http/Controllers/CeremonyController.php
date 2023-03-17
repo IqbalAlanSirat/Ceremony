@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CeremoniesExport;
 use App\Models\Ceremony;
 use App\Http\Requests\StoreCeremonyRequest;
 use App\Http\Requests\UpdateCeremonyRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CeremonyController extends Controller
 {
@@ -61,5 +63,10 @@ class CeremonyController extends Controller
     public function form(Ceremony $ceremony)
     {
 
+    }
+
+    public function export()
+    {
+        return Excel::download(new CeremoniesExport, 'Ceremony.xlsx');
     }
 }
